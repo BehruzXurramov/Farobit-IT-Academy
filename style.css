@@ -9,13 +9,30 @@
   scroll-behavior: smooth;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 main {
   margin: 0px 124px;
+}
+
+.overlay {
+  display: none;
+}
+
+.bars {
+  display: none;
+}
+
+.right_pointer {
+  display: none;
 }
 
 nav {
   display: flex;
   align-items: start;
+  justify-content: space-between;
   margin-top: 24px;
 }
 
@@ -46,7 +63,6 @@ nav > div > div {
 
 .blur_button span {
   color: rgba(33, 137, 255, 1);
-  font-family: Manrope;
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
@@ -89,6 +105,9 @@ header {
   border-radius: 44px;
   margin-top: 37px;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
 .header_content {
@@ -153,15 +172,11 @@ header h1 div span {
   width: 579px;
   height: 579px;
   border-radius: 50%;
-  overflow: hidden;
-  position: absolute;
-  z-index: 5;
-  right: -116px;
-  top: -40px;
   background-image: url("./images/header_photo.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
+  margin: -40px -116px -140px 0px;
 }
 
 .header_line {
@@ -331,7 +346,6 @@ header h1 div span {
   transform: rotate(-13deg);
   width: max-content;
   margin-left: -40px;
-  margin-top: 40px;
 }
 
 .block1 .item4 > div > span {
@@ -491,9 +505,10 @@ header h1 div span {
 .block5 > div:first-child {
   width: 43%;
   padding-right: 100px;
+  padding-bottom: 150px;
 }
 
-.block5 > div:last-child {
+.block5 > div:nth-child(2) {
   width: 57%;
 }
 
@@ -662,4 +677,387 @@ footer > p {
   color: rgba(11, 36, 65, 1);
   margin-top: 36px;
   padding-bottom: 52px;
+}
+
+.author {
+  position: fixed;
+  bottom: 5%;
+  right: 2%;
+  display: flex;
+  align-items: center;
+}
+
+.author_logo {
+  background-color: #464b65;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.author_border {
+  border-radius: 50%;
+  width: 90%;
+  height: 90%;
+  border: 3px solid #969bb6;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  animation-name: aylan;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  transform: rotate(0deg);
+}
+
+.author_border_cutter {
+  width: 100%;
+  height: 30%;
+  background-color: #464b65;
+  position: absolute;
+  top: 35%;
+  animation-name: aylan;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  transform: rotate(0deg);
+}
+
+.author_img {
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 10%;
+}
+
+.author_logo input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.author_img img {
+  width: 100%;
+}
+
+@keyframes aylan {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.author:has(input:checked) .author_text {
+  width: 270px;
+}
+
+.author:has(input:checked) .author_border_cutter {
+  display: none;
+}
+
+.author_text {
+  display: flex;
+  flex-direction: column;
+  width: 0px;
+  background-color: #697096;
+  transition: 0.5s;
+  padding: 10px 0px 10px 15px;
+  border-radius: 25px 0px 0px 25px;
+  margin-right: -20px;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 100%;
+}
+
+.author_text span {
+  font-weight: 300;
+}
+
+.author_text h3 a {
+  color: black;
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  main {
+    margin: 0px 3%;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  .right_pointer {
+    display: flex;
+    width: min-content;
+    height: min-content;
+    position: relative;
+  }
+
+  .right_pointer i {
+    font-size: 25px;
+  }
+
+  .back_check {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+  }
+
+  .nav_items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0px;
+    left: 140vw;
+    z-index: 10;
+    background-color: white;
+    width: 60vw;
+    height: 100vh;
+    padding: 40px 0px 0px 40px;
+    margin-top: 0px;
+    gap: 24px;
+    transition: 0.5s;
+  }
+
+  .overlay {
+    position: fixed;
+    left: 0px;
+    top: -5vh;
+    width: 100vw;
+    height: 110vh;
+    background-color: rgb(0, 0, 0);
+    opacity: 50%;
+    z-index: 9;
+  }
+
+  .overlay input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  .nav_items > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .bars {
+    display: flex;
+    align-self: center;
+    width: min-content;
+    height: min-content;
+    position: relative;
+  }
+
+  .bars i {
+    font-size: 35px;
+  }
+
+  .bars_check {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+  }
+
+  .lang {
+    margin-left: 0px !important;
+  }
+
+  nav:has(.bars input:checked) .nav_items {
+    left: 40vw;
+  }
+
+  nav:has(.bars input:checked) > .overlay {
+    display: flex;
+  }
+
+  nav:has(.right_pointer input:checked) .nav_items {
+    left: 140vw;
+  }
+
+  nav:has(.right_pointer input:checked) > .overlay {
+    display: none;
+  }
+
+  nav:has(.overlay input:checked) .nav_items {
+    left: 140vw;
+  }
+
+  nav:has(.overlay input:checked) > .overlay {
+    display: none;
+  }
+
+  .header_content {
+    margin-left: 25px;
+  }
+
+  .teacher_block {
+    width: 33.33%;
+  }
+
+  .block5 {
+    padding: 35px;
+  }
+
+  .block5 > div:first-child {
+    padding-right: 30px;
+  }
+
+  footer {
+    padding: 0px 3%;
+  }
+
+  .line1 img {
+    margin-right: 150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav_items {
+    padding-left: 20px;
+  }
+
+  header {
+    flex-direction: column;
+  }
+
+  .header_photo {
+    width: 450px;
+    height: 450px;
+  }
+
+  .header_content {
+    max-width: 250px;
+  }
+
+  .block1 div {
+    width: 100% !important;
+  }
+
+  .block1 .item4 > div {
+    width: max-content !important;
+  }
+
+  .block1 > div {
+    flex-direction: column;
+  }
+
+  .block1 > div > div:first-child > div {
+    flex-direction: column;
+  }
+
+  .block1 > div > div:first-child > div:first-child {
+    margin-bottom: 0px;
+  }
+
+  .block1 .item1,
+  .block1 .item2 {
+    margin-bottom: 24px;
+    margin-right: 0px;
+  }
+
+  .block1 .item3 {
+    height: 273px;
+  }
+
+  .teacher_block {
+    width: 50%;
+  }
+
+  .profile_photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .teacher_block h4 {
+    font-size: 16px;
+  }
+
+  .teacher_block span {
+    font-size: 14px;
+  }
+
+  .block3 > div {
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .block3 > div > div:last-child {
+    flex-direction: column-reverse;
+  }
+
+  .block3 > div > div {
+    width: 100% !important;
+    gap: 0px;
+  }
+
+  .block3 .item {
+    margin-bottom: 24px;
+  }
+
+  .block3 .item2,
+  .block3 .item3 {
+    height: 300px;
+    flex: none;
+  }
+
+  .block3 {
+    margin-bottom: 56px;
+  }
+
+  .block4 > div > div {
+    padding: 30px;
+  }
+
+  .block4 span {
+    font-size: 18px;
+  }
+
+  .block4 > div > div img {
+    margin-left: 10px;
+  }
+
+  .block5 {
+    flex-direction: column-reverse;
+  }
+
+  .block5 > div {
+    width: 100% !important;
+  }
+
+  .line1 {
+    flex-wrap: wrap;
+  }
+
+  .line1 address {
+    text-align: start;
+    margin-bottom: 10px;
+  }
+
+  .line2 > div:last-child {
+    flex-direction: column;
+  }
+
+  .author_logo {
+    width: 70px;
+    height: 70px;
+  }
 }
